@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import { LoginPageElements } from "./login-pages.elements";
+import { Logger } from "../../support/logger";
 
 export class LoginPageMethods{
 
@@ -12,14 +13,17 @@ export class LoginPageMethods{
     }
 
     async insertUsername(username: string){
+        await Logger.logStep(`Insert ${username} in User Name`)
         await this.loginPageElements.textboxes.username.fill(username)
     }
     
     async insertPassword(password: string){
+        await Logger.logStep(`Insert ${password} in password`)
         await this.loginPageElements.textboxes.password.fill(password)
     }
 
     async clickOnLoginButton(){
+        await Logger.logStep('Click on Login button')
         await this.loginPageElements.buttons.login.click()
     }
 }
