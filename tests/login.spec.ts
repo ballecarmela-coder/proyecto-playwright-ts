@@ -19,4 +19,15 @@ test.describe('Login', () => {
         await loginPageMethods.clickOnLoginButton()
         await productPageMethods.verifyProductPageIsDisplayed()
     })
+
+    test('Login with invalid credentials', async ({ page }) => {
+        const commonPageMethods = new CommonPageMethods(page)
+        const loginPageMethods = new LoginPageMethods(page)
+
+        await commonPageMethods.navigateToTheApplication()
+        await loginPageMethods.insertUsername('jdhfbs')
+        await loginPageMethods.insertPassword('jhsdbd')
+        await loginPageMethods.clickOnLoginButton()
+        await loginPageMethods.verifyMessage('Epic sadface: Username and password do not match any user in this service')
+    })
 })
