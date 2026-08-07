@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { ProductPageElements } from "./producto-page.elements";
 import { Logger } from "../../support/logger";
+import { expect } from "@playwright/test";
 
 export class ProductPageMethods {
     private page: Page
@@ -19,6 +20,12 @@ export class ProductPageMethods {
     async clickOnAddToCart(nameProduct: string){
         await Logger.logStep('Click on Add to Cart button')
         await this.productPageElements.buttons.addCart(nameProduct).click()
+    }
+
+    async verifyProductPageIsDisplayed(){
+        await Logger.logVerification('Verificar si el titulo de producto se muestra')
+        const elementCount = await this.productPageElements.others.titleProducts.count()
+        expect(elementCount).toEqual(1)
     }
 
 }
