@@ -39,4 +39,13 @@ test.describe('Login', () => {
         await commonPageMethods.navigateToTheApplication()
         await loginPageMethods.login(interfaces.standarUser)
     })
+
+    test('Login with blanck credentials', async ({ page }) => {
+        const commonPageMethods = new CommonPageMethods(page)
+        const loginPageMethods = new LoginPageMethods(page)
+
+        await commonPageMethods.navigateToTheApplication()
+        await loginPageMethods.clickOnLoginButton()
+        await loginPageMethods.verifyMessage('Epic sadface: Username is required')
+    })
 })
