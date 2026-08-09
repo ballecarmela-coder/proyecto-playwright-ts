@@ -25,4 +25,26 @@ test.describe('Cart test case', async () => {
         await cartPageMethods.verifyProductIsDisplades(productName)
 
     })
+
+     test('Remove item from cart', async ({page}) =>{
+        const commonPageMethods = new CommonPageMethods(page)
+        const loginPageMethods = new LoginPageMethods(page)
+        const productPageMethods = new ProductPageMethods(page)
+        const cartPageMethods = new CartPageMethods(page)
+        const productName = 'Sauce Labs Bolt T-Shirt'
+
+        Logger.logPreCondition('Item is in the cart')
+        await commonPageMethods.navigateToTheApplication()
+        await loginPageMethods.login(standarUser)
+        await productPageMethods.verifyProductPageIsDisplayed()
+
+        await productPageMethods.clickOnAddToCart(productName)
+        await productPageMethods.clickOnCartIcon()
+        await cartPageMethods.verifyProductIsDisplades(productName)
+
+        await productPageMethods.clickOnCartIcon()
+        await cartPageMethods.clickOnRemove(productName)
+        await cartPageMethods.verifyProductIsNotDisplades(productName)
+
+    })
 })
