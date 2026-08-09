@@ -14,4 +14,10 @@ export class OverviewPageElements{
             cancel: this.page.locator('#cancel')
         }
     }
+
+    get otherElements(){
+        return{
+            pageTitle: this.page.locator('[data-test="title"]')
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test"
+import { expect, Page } from "@playwright/test"
 import { CheckoutPageElements } from "./checkout-page.elements"
 import { Logger } from "../../support/logger"
 
